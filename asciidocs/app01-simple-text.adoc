@@ -1,5 +1,6 @@
 == Lab: Simple Text App
 
+[#_create_the_project]
 === Create the project
 
 ifndef::imagesdir[:imagesdir: images]

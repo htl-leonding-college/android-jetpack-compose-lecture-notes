@@ -39,7 +39,7 @@ toc::[]
 
 == Foundations Jetpack Compose
 
-<<app01-simple-text-adoc>>
+<<app01-simple-text.adoc#_create_the_project, open doc>>
 
 == Lab: Simple Text App
 
