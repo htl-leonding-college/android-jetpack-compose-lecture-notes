@@ -17,7 +17,7 @@ ifdef::backend-html5[]
 
 // https://fontawesome.com/v4.7.0/icons/
 icon:file-text-o[link=https://raw.githubusercontent.com/htl-leonding-college/android-jetpack-compose-lecture-notes/main/asciidocs/{docname}.adoc] ‏ ‏ ‎
-icon:github-square[link=https://github.com/htl-leonding-college/asciidoctor-docker-template] ‏ ‏ ‎
+icon:github-square[link=https://github.com/htl-leonding-college/android-jetpack-compose-lecture-notes] ‏ ‏ ‎
 icon:home[link=https://htl-leonding.github.io/]
 endif::backend-html5[]
 
@@ -25,3 +25,21 @@ endif::backend-html5[]
 toc::[]
 
 == Prerequisites - What students have to prepare
+
+. Download JetBrains Toolbox: https://www.jetbrains.com/lp/toolbox/
+. Install Android Studio from Toolbox
+
+== Foundations Kotlin
+
+* http://edufs.edu.htl-leonding.ac.at/~t.stuetz/download/android/01-kotlin-grundlagen/01_Introduction.pdf[01_Introduction.pdf^]
+* http://edufs.edu.htl-leonding.ac.at/~t.stuetz/download/android/01-kotlin-grundlagen/02_Functional_Programming.pdf[02_Functional_Programming.pdf^]
+* http://edufs.edu.htl-leonding.ac.at/~t.stuetz/download/android/01-kotlin-grundlagen/03_Object_Orientation.pdf[03_Object_Orientation.pdf^]
+
+
+
+== Foundations Jetpack Compose
+
+<<Lab: Simple Text App>>
+
+== Lab: Simple Text App
+

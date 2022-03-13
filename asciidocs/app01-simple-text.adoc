@@ -1,0 +1,43 @@
+== Lab: Simple Text App
+
+=== Create the project
+
+ifndef::imagesdir[:imagesdir: images]
+
+image::app01-001-project-window.png[]
+
+image::app01-002-empty-compose-activity.png[]
+
+image::app01-003-project-config.png[]
+
+image::app01-004-creating-project.png[]
+
+=== Update the dependencies
+
+image::app01-005-module-build-gradle.png[]
+
+image::app01-006-project-build-gradle.png[]
+
+=== View the Manifest
+
+image::app01-007-manifest.png[]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
