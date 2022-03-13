@@ -18,7 +18,7 @@ ifdef::backend-html5[]
 // https://fontawesome.com/v4.7.0/icons/
 icon:file-text-o[link=https://raw.githubusercontent.com/htl-leonding-college/android-jetpack-compose-lecture-notes/main/asciidocs/{docname}.adoc] ‏ ‏ ‎
 icon:github-square[link=https://github.com/htl-leonding-college/android-jetpack-compose-lecture-notes] ‏ ‏ ‎
-icon:home[link=https://htl-leonding.github.io/]
+icon:home[link=https://htl-leonding-college.github.io/android-jetpack-compose-lecture-notes/]
 endif::backend-html5[]
 
 // print the toc here (not at the default position)
@@ -39,7 +39,7 @@ toc::[]
 
 == Foundations Jetpack Compose
 
-<<Lab: Simple Text App>>
+<<app01-simple-text-adoc>>
 
 == Lab: Simple Text App
 
