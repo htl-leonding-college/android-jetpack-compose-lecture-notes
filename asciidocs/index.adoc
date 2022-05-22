@@ -1,4 +1,4 @@
-= Android Lecture Notes
+= Android Jetpack Compose Pathway
 Thomas W. Stütz
 0.0.1, {docdate}: android, kotlin, jetpack compose
 ifndef::imagesdir[:imagesdir: images]
@@ -36,10 +36,283 @@ toc::[]
 * http://edufs.edu.htl-leonding.ac.at/~t.stuetz/download/android/01-kotlin-grundlagen/03_Object_Orientation.pdf[03_Object_Orientation.pdf^]
 
 
+== First App With Android (w/ xml)
+
+* http://edufs.edu.htl-leonding.ac.at/~t.stuetz/download/android/02-cool-droid/05_CoolDroid.pdf[05_CoolDroid.pdf^]
 
 == Foundations Jetpack Compose
 
 <<app01-simple-text.adoc#_create_the_project, open doc>>
 
 == Lab: Simple Text App
+
+* Modifier
+* Row, Column, Box
+* Export Composable for Reuse
+* Arrangments in Row / Column
+* Paradigm Shift from Imperative to Declarative
+** https://www.udemy.com/course/jetpack-compose-masterclass/learn/lecture/23948772#content[Paradigm Shift]
+* Dynamic Content (Example)
+* States in Compose
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+== Basic Layouts in Compose
+
+* Lab: LayoutsCodelab
+
+* *Most composables accept an optional modifier parameter to make them more flexible*, enabling the caller to modify them. If you're creating your own composable, consider having a modifier as a parameter, default it to Modifier (i.e. *empty modifier that doesn't do anything*) and apply it to the root composable of your function. In this case:
+
+[source,kotlin]
+----
+@Composable
+fun PhotographerCard(modifier: Modifier = Modifier) {
+    Row(modifier) { ... }
+}
+----
+
+TIP: By convention, the modifier is specified as the first optional parameter of a function. This enables you to specify a modifier on a composable without having to name all parameters.
+
+=== Slot APIs
+
+* *Slot APIs* are a pattern Compose introduces to bring in a layer of customization on top of composables, in this use case, the available Material Components composables.
+
+
+=== Scaffold
+
+
+
+
+
+
+
+== State in Jetpack Compose
+
+* you find this codelab also https://io.google/2022/program/c9768969-9e81-4865-9dff-29a2ab1201ea/[here^].
+
+.State in an app
+****
+*Any value that can change over time.* This is a very broad definition and encompasses everything from a Room database to a variable in a class.
+****
+
+.Key idea
+****
+State determines what is shown in the UI at any particular time.
+****
+
+.Default Modifier
+****
+It's a good practice to provide *a default Modifier* to all composable functions, as it increases reusability. It should appear as the *first optional parameter* in the parameter list, after all required parameters.
+****
+
+== Events in Compose
+
+image::state-ui-update-loop.png[]
+
+
+.UI Update Loop
+[plantuml,svg,align="center"]
+----
+include::plantuml/ui-update-loop.puml[]
+----
+
+.Key idea
+****
+State is. Events happen.
+****
+
+=== Memory in a composable function
+
+image::state-composition-recomposition.png[]
+
+
+.The Composition
+****
+a description of the UI built by Jetpack Compose when it executes composables.
+****
+
+.Initial composition
+****
+creation of a Composition by running composables the first time.
+****
+
+.Recomposition
+****
+re-running composables to update the Composition when data changes.
+****
+
+* Use Compose's State and MutableState types to make state observable by Compose.
+
+
+
+* Fragen:
+** Warum muss eine Variable vom Typ `MutableState` oder `State` sein?
+*** Das damit Jetpack Compose mitgeteilt wird, dass diese Variable ein Zustand (State) ist und daher observed wird.
+*** Jetpack Compose ist nun in der Lage ein recompose durchzuführen, falls diese Variable geändert wird.
+
+** Was bedeutet `remember { ... }`?
+*** Die Variable behält auch nach einer Recomposition ihren Wert.
++
+[source,kotlin]
+----
+val count = remember { mutableStateOf(0) }
+Text("$count.value")
+----
+
+** Was ist der Unterschied zu `by remember`?
++
+[source,kotlin]
+----
+var count by remember { mutableStateOf(0)}
+Text("$count")
+----
+
+*** var statt val
+**** Warum hat man bei remember `val`?
+*** kein .value mehr notwendig
+
+** Wie kann man das einfache state-hoisting-Beispiel erweitern, dass zwei Counter zur Verfügung stehen
+
+=== State driven UI
+
+* Compose is a declarative UI framework. Instead of removing UI components or changing their visibility when state changes, we describe how the UI is under specific conditions of state. As a result of a recomposition being called and UI updated, composables might end up entering or leaving the Composition.
+
+.Key idea
+****
+If the UI is what the user sees, the UI state is what the app says they should see. Like two sides of the same coin, the UI is the visual representation of the UI state. Any changes to the UI state are immediately reflected in the UI.
+****
+
+
+==== Layout Inspector
+
+image::state-layout-inspector.png[]
+
+
+==== Enabling the Button
+
+[source,kotlin]
+----
+Button(
+    onClick = { count++ },
+    Modifier.padding(top = 8.dp),
+    enabled = count < 10 // <.>
+) {
+    Text("Add one")
+}
+----
+
+<.> enabling / disabling of the button
+
+
+=== Remember in Composition
+
+.remember
+****
+stores objects in the Composition, and forgets the object if the source location where `remember` is called is not invoked again during a recomposition.
+****
+
+
+=== Restore state in Compose
+
+==== rememberSaveable
+
+* restore state across recompositions
+* and across configuration changes
+** change orientation
+** toggle dark mode
+** ...
+
+[source,kotlin]
+----
+var count by rememberSaveable { mutableStateOf(0) }
+----
+
+=== State hoisting
+
+==== key concepts
+
+* A *stateful composable* owns state
+** less reusable
+** harder to test
+* A *stateless composable* doesn't hold any state and is therefore
+** easier to test
+* *State hoisting* is a pattern of moving state to a composable's *caller* to make a composable stateles
+** Single-source-of-truth
+** can be shared with multiple composables
+** it is interceptable by callers that can decide to ignore or modify the state
+* decouples the state from the composable itself
+
+image::state01-key-concepts.png[]
+
+==== Hoisting
+
+* Name des Patterns: Unidirectional DataFlow (UDF)
+
+* *State hoisting* in Compose is a pattern of moving state to a composable's caller to make a composable stateless. The general pattern for state hoisting in Jetpack Compose is to replace the state variable with two parameters, where this value represents any state that could be modified:
+
+** *value: T* - the current value to display
+** *onValueChange: (T) -> Unit* - an event that requests the value to change, where T is the proposed new value
+
+.Unidirectional Data Flow (UDF)
+****
+The *pattern* where the state goes down, and events go up is called *Unidirectional Data Flow (UDF)*, and *state hoisting* is how we *implement this architecture in Compose*. You can learn more about this in the Compose https://developer.android.com/jetpack/compose/architecture#udf-compose[Architecture documentation^].
+****
+
+
+
+image::state02-hoisting1.png[]
+
+image::state03-hoisting2.png[]
+
+
+* State that is hoisted this way has some important properties:
+
+** *Single source of truth*: By moving state instead of duplicating it, we're ensuring there's only one source of truth. This helps avoid bugs.
+** *Shareable*: Hoisted state can be shared with multiple composables.
+** *Interceptable*: Callers to the stateless composables can decide to ignore or modify events before changing the state.
+** *Decoupled*: The state for a stateless composable function can be stored anywhere. For example, in a ViewModel.
+
+
+==== Stateful vs Stateless
+
+.A stateless composable
+****
+is a composable that doesn't own any state, meaning it doesn't hold or define or modify new state.
+****
+
+.A stateful composable
+****
+is a composable that owns a piece of state that can change over time.
+****
+
+* In real apps, having a 100% stateless composable can be difficult to achieve depending on the composable's responsibilities. You should design your composables in a way that they will own as little state as possible and allow the state to be hoisted, when it makes sense, by exposing it in the composable's API.
+
+
+
+
 
