@@ -7,7 +7,7 @@
 <meta name="generator" content="Asciidoctor 2.0.17">
 <meta name="author" content="Thomas W. Stütz">
 <link rel="icon" type="image/png" href="themes/favicon.png">
-<title>Android Lecture Notes</title>
+<title>Android Jetpack Compose Pathway</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic,600,600italic%7CNoto+Serif:400,400italic,700,700italic%7CDroid+Sans+Mono:400,700">
 <style>
 /*! Asciidoctor default stylesheet | MIT License | https://asciidoctor.org */
@@ -438,14 +438,229 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sa {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
-<h1>Android Lecture Notes</h1>
+<h1>Android Jetpack Compose Pathway</h1>
 <div class="details">
 <span id="author" class="author">Thomas W. Stütz</span><br>
 <span id="revnumber">version 0.0.1,</span>
-<span id="revdate">2022-03-13</span>
+<span id="revdate">2022-05-22</span>
 <br><span id="revremark">android, kotlin, jetpack compose</span>
 </div>
 <div id="toc" class="toc2">
@@ -453,8 +668,25 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <ul class="sectlevel1">
 <li><a href="#_prerequisites_what_students_have_to_prepare">1. Prerequisites - What students have to prepare</a></li>
 <li><a href="#_foundations_kotlin">2. Foundations Kotlin</a></li>
-<li><a href="#_foundations_jetpack_compose">3. Foundations Jetpack Compose</a></li>
-<li><a href="#_lab_simple_text_app">4. Lab: Simple Text App</a></li>
+<li><a href="#_first_app_with_android_w_xml">3. First App With Android (w/ xml)</a></li>
+<li><a href="#_foundations_jetpack_compose">4. Foundations Jetpack Compose</a></li>
+<li><a href="#_lab_simple_text_app">5. Lab: Simple Text App</a></li>
+<li><a href="#_basic_layouts_in_compose">6. Basic Layouts in Compose</a>
+<ul class="sectlevel2">
+<li><a href="#_slot_apis">6.1. Slot APIs</a></li>
+<li><a href="#_scaffold">6.2. Scaffold</a></li>
+</ul>
+</li>
+<li><a href="#_state_in_jetpack_compose">7. State in Jetpack Compose</a></li>
+<li><a href="#_events_in_compose">8. Events in Compose</a>
+<ul class="sectlevel2">
+<li><a href="#_memory_in_a_composable_function">8.1. Memory in a composable function</a></li>
+<li><a href="#_state_driven_ui">8.2. State driven UI</a></li>
+<li><a href="#_remember_in_composition">8.3. Remember in Composition</a></li>
+<li><a href="#_restore_state_in_compose">8.4. Restore state in Compose</a></li>
+<li><a href="#_state_hoisting">8.5. State hoisting</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -503,7 +735,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_foundations_jetpack_compose"><a class="anchor" href="#_foundations_jetpack_compose"></a>3. Foundations Jetpack Compose</h2>
+<h2 id="_first_app_with_android_w_xml"><a class="anchor" href="#_first_app_with_android_w_xml"></a>3. First App With Android (w/ xml)</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://edufs.edu.htl-leonding.ac.at/~t.stuetz/download/android/02-cool-droid/05_CoolDroid.pdf" target="_blank" rel="noopener">05_CoolDroid.pdf</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_foundations_jetpack_compose"><a class="anchor" href="#_foundations_jetpack_compose"></a>4. Foundations Jetpack Compose</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="app01-simple-text.html#_create_the_project">open doc</a></p>
@@ -511,16 +755,500 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_simple_text_app"><a class="anchor" href="#_lab_simple_text_app"></a>4. Lab: Simple Text App</h2>
+<h2 id="_lab_simple_text_app"><a class="anchor" href="#_lab_simple_text_app"></a>5. Lab: Simple Text App</h2>
 <div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Modifier</p>
+</li>
+<li>
+<p>Row, Column, Box</p>
+</li>
+<li>
+<p>Export Composable for Reuse</p>
+</li>
+<li>
+<p>Arrangments in Row / Column</p>
+</li>
+<li>
+<p>Paradigm Shift from Imperative to Declarative</p>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.udemy.com/course/jetpack-compose-masterclass/learn/lecture/23948772#content">Paradigm Shift</a></p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Dynamic Content (Example)</p>
+</li>
+<li>
+<p>States in Compose</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_layouts_in_compose"><a class="anchor" href="#_basic_layouts_in_compose"></a>6. Basic Layouts in Compose</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Lab: LayoutsCodelab</p>
+</li>
+<li>
+<p><strong>Most composables accept an optional modifier parameter to make them more flexible</strong>, enabling the caller to modify them. If you&#8217;re creating your own composable, consider having a modifier as a parameter, default it to Modifier (i.e. <strong>empty modifier that doesn&#8217;t do anything</strong>) and apply it to the root composable of your function. In this case:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="kotlin"><span class="nd">@Composable</span>
+<span class="k">fun</span> <span class="nf">PhotographerCard</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span> <span class="nc">Modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nc">Row</span><span class="p">(</span><span class="n">modifier</span><span class="p">)</span> <span class="p">{</span> <span class="o">..</span><span class="p">.</span> <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+By convention, the modifier is specified as the first optional parameter of a function. This enables you to specify a modifier on a composable without having to name all parameters.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_slot_apis"><a class="anchor" href="#_slot_apis"></a>6.1. Slot APIs</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Slot APIs</strong> are a pattern Compose introduces to bring in a layer of customization on top of composables, in this use case, the available Material Components composables.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_scaffold"><a class="anchor" href="#_scaffold"></a>6.2. Scaffold</h3>
 
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_state_in_jetpack_compose"><a class="anchor" href="#_state_in_jetpack_compose"></a>7. State in Jetpack Compose</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>you find this codelab also <a href="https://io.google/2022/program/c9768969-9e81-4865-9dff-29a2ab1201ea/" target="_blank" rel="noopener">here</a>.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">State in an app</div>
+<div class="paragraph">
+<p><strong>Any value that can change over time.</strong> This is a very broad definition and encompasses everything from a Room database to a variable in a class.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Key idea</div>
+<div class="paragraph">
+<p>State determines what is shown in the UI at any particular time.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Default Modifier</div>
+<div class="paragraph">
+<p>It&#8217;s a good practice to provide <strong>a default Modifier</strong> to all composable functions, as it increases reusability. It should appear as the <strong>first optional parameter</strong> in the parameter list, after all required parameters.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_events_in_compose"><a class="anchor" href="#_events_in_compose"></a>8. Events in Compose</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="images/state-ui-update-loop.png" alt="state ui update loop">
+</div>
+</div>
+<div class="imageblock text-center">
+<div class="content">
+<img src="images/svg.png" alt="svg" width="844" height="105">
+</div>
+<div class="title">Figure 1. UI Update Loop</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Key idea</div>
+<div class="paragraph">
+<p>State is. Events happen.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_memory_in_a_composable_function"><a class="anchor" href="#_memory_in_a_composable_function"></a>8.1. Memory in a composable function</h3>
+<div class="imageblock">
+<div class="content">
+<img src="images/state-composition-recomposition.png" alt="state composition recomposition">
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">The Composition</div>
+<div class="paragraph">
+<p>a description of the UI built by Jetpack Compose when it executes composables.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Initial composition</div>
+<div class="paragraph">
+<p>creation of a Composition by running composables the first time.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Recomposition</div>
+<div class="paragraph">
+<p>re-running composables to update the Composition when data changes.</p>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Use Compose&#8217;s State and MutableState types to make state observable by Compose.</p>
+</li>
+<li>
+<p>Fragen:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Warum muss eine Variable vom Typ <code>MutableState</code> oder <code>State</code> sein?</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Das damit Jetpack Compose mitgeteilt wird, dass diese Variable ein Zustand (State) ist und daher observed wird.</p>
+</li>
+<li>
+<p>Jetpack Compose ist nun in der Lage ein recompose durchzuführen, falls diese Variable geändert wird.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Was bedeutet <code>remember { &#8230;&#8203; }</code>?</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Die Variable behält auch nach einer Recomposition ihren Wert.</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="kotlin"><span class="kd">val</span> <span class="py">count</span> <span class="p">=</span> <span class="nf">remember</span> <span class="p">{</span> <span class="nf">mutableStateOf</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">}</span>
+<span class="nc">Text</span><span class="p">(</span><span class="s">"$count.value"</span><span class="p">)</span></code></pre>
+</div>
+</div>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Was ist der Unterschied zu <code>by remember</code>?</p>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="kotlin"><span class="kd">var</span> <span class="py">count</span> <span class="k">by</span> <span class="nf">remember</span> <span class="p">{</span> <span class="nf">mutableStateOf</span><span class="p">(</span><span class="mi">0</span><span class="p">)}</span>
+<span class="nc">Text</span><span class="p">(</span><span class="s">"$count"</span><span class="p">)</span></code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>var statt val</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Warum hat man bei remember <code>val</code>?</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>kein .value mehr notwendig</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Wie kann man das einfache state-hoisting-Beispiel erweitern, dass zwei Counter zur Verfügung stehen</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_state_driven_ui"><a class="anchor" href="#_state_driven_ui"></a>8.2. State driven UI</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Compose is a declarative UI framework. Instead of removing UI components or changing their visibility when state changes, we describe how the UI is under specific conditions of state. As a result of a recomposition being called and UI updated, composables might end up entering or leaving the Composition.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Key idea</div>
+<div class="paragraph">
+<p>If the UI is what the user sees, the UI state is what the app says they should see. Like two sides of the same coin, the UI is the visual representation of the UI state. Any changes to the UI state are immediately reflected in the UI.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_layout_inspector"><a class="anchor" href="#_layout_inspector"></a>8.2.1. Layout Inspector</h4>
+<div class="imageblock">
+<div class="content">
+<img src="images/state-layout-inspector.png" alt="state layout inspector">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_enabling_the_button"><a class="anchor" href="#_enabling_the_button"></a>8.2.2. Enabling the Button</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="kotlin"><span class="nc">Button</span><span class="p">(</span>
+    <span class="n">onClick</span> <span class="p">=</span> <span class="p">{</span> <span class="n">count</span><span class="p">++</span> <span class="p">},</span>
+    <span class="nc">Modifier</span><span class="p">.</span><span class="nf">padding</span><span class="p">(</span><span class="n">top</span> <span class="p">=</span> <span class="mi">8</span><span class="p">.</span><span class="n">dp</span><span class="p">),</span>
+    <span class="n">enabled</span> <span class="p">=</span> <span class="n">count</span> <span class="p">&lt;</span> <span class="mi">10</span> <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="nc">Text</span><span class="p">(</span><span class="s">"Add one"</span><span class="p">)</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>enabling / disabling of the button</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_remember_in_composition"><a class="anchor" href="#_remember_in_composition"></a>8.3. Remember in Composition</h3>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">remember</div>
+<div class="paragraph">
+<p>stores objects in the Composition, and forgets the object if the source location where <code>remember</code> is called is not invoked again during a recomposition.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_restore_state_in_compose"><a class="anchor" href="#_restore_state_in_compose"></a>8.4. Restore state in Compose</h3>
+<div class="sect3">
+<h4 id="_remembersaveable"><a class="anchor" href="#_remembersaveable"></a>8.4.1. rememberSaveable</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>restore state across recompositions</p>
+</li>
+<li>
+<p>and across configuration changes</p>
+<div class="ulist">
+<ul>
+<li>
+<p>change orientation</p>
+</li>
+<li>
+<p>toggle dark mode</p>
+</li>
+<li>
+<p>&#8230;&#8203;</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="kotlin"><span class="kd">var</span> <span class="py">count</span> <span class="k">by</span> <span class="nf">rememberSaveable</span> <span class="p">{</span> <span class="nf">mutableStateOf</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_state_hoisting"><a class="anchor" href="#_state_hoisting"></a>8.5. State hoisting</h3>
+<div class="sect3">
+<h4 id="_key_concepts"><a class="anchor" href="#_key_concepts"></a>8.5.1. key concepts</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>A <strong>stateful composable</strong> owns state</p>
+<div class="ulist">
+<ul>
+<li>
+<p>less reusable</p>
+</li>
+<li>
+<p>harder to test</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>A <strong>stateless composable</strong> doesn&#8217;t hold any state and is therefore</p>
+<div class="ulist">
+<ul>
+<li>
+<p>easier to test</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>State hoisting</strong> is a pattern of moving state to a composable&#8217;s <strong>caller</strong> to make a composable stateles</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Single-source-of-truth</p>
+</li>
+<li>
+<p>can be shared with multiple composables</p>
+</li>
+<li>
+<p>it is interceptable by callers that can decide to ignore or modify the state</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>decouples the state from the composable itself</p>
+</li>
+</ul>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/state01-key-concepts.png" alt="state01 key concepts">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_hoisting"><a class="anchor" href="#_hoisting"></a>8.5.2. Hoisting</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Name des Patterns: Unidirectional DataFlow (UDF)</p>
+</li>
+<li>
+<p><strong>State hoisting</strong> in Compose is a pattern of moving state to a composable&#8217;s caller to make a composable stateless. The general pattern for state hoisting in Jetpack Compose is to replace the state variable with two parameters, where this value represents any state that could be modified:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>value: T</strong> - the current value to display</p>
+</li>
+<li>
+<p><strong>onValueChange: (T) &#8594; Unit</strong> - an event that requests the value to change, where T is the proposed new value</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">Unidirectional Data Flow (UDF)</div>
+<div class="paragraph">
+<p>The <strong>pattern</strong> where the state goes down, and events go up is called <strong>Unidirectional Data Flow (UDF)</strong>, and <strong>state hoisting</strong> is how we <strong>implement this architecture in Compose</strong>. You can learn more about this in the Compose <a href="https://developer.android.com/jetpack/compose/architecture#udf-compose" target="_blank" rel="noopener">Architecture documentation</a>.</p>
+</div>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/state02-hoisting1.png" alt="state02 hoisting1">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/state03-hoisting2.png" alt="state03 hoisting2">
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>State that is hoisted this way has some important properties:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Single source of truth</strong>: By moving state instead of duplicating it, we&#8217;re ensuring there&#8217;s only one source of truth. This helps avoid bugs.</p>
+</li>
+<li>
+<p><strong>Shareable</strong>: Hoisted state can be shared with multiple composables.</p>
+</li>
+<li>
+<p><strong>Interceptable</strong>: Callers to the stateless composables can decide to ignore or modify events before changing the state.</p>
+</li>
+<li>
+<p><strong>Decoupled</strong>: The state for a stateless composable function can be stored anywhere. For example, in a ViewModel.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_stateful_vs_stateless"><a class="anchor" href="#_stateful_vs_stateless"></a>8.5.3. Stateful vs Stateless</h4>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">A stateless composable</div>
+<div class="paragraph">
+<p>is a composable that doesn&#8217;t own any state, meaning it doesn&#8217;t hold or define or modify new state.</p>
+</div>
+</div>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">A stateful composable</div>
+<div class="paragraph">
+<p>is a composable that owns a piece of state that can change over time.</p>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>In real apps, having a 100% stateless composable can be difficult to achieve depending on the composable&#8217;s responsibilities. You should design your composables in a way that they will own as little state as possible and allow the state to be hoisted, when it makes sense, by exposing it in the composable&#8217;s API.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2022-03-13 16:01:43 UTC
+Last updated 2022-05-22 07:50:28 UTC
 </div>
 </div>
 </body>
