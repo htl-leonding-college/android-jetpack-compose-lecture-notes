@@ -660,7 +660,7 @@ pre.rouge {
 <div class="details">
 <span id="author" class="author">Thomas W. Stütz</span><br>
 <span id="revnumber">version 0.0.1,</span>
-<span id="revdate">2022-05-22</span>
+<span id="revdate">2022-05-29</span>
 <br><span id="revremark">android, kotlin, jetpack compose</span>
 </div>
 <div id="toc" class="toc2">
@@ -685,6 +685,8 @@ pre.rouge {
 <li><a href="#_remember_in_composition">8.3. Remember in Composition</a></li>
 <li><a href="#_restore_state_in_compose">8.4. Restore state in Compose</a></li>
 <li><a href="#_state_hoisting">8.5. State hoisting</a></li>
+<li><a href="#_viewmodel">8.6. ViewModel</a></li>
+<li><a href="#_problem">8.7. Problem</a></li>
 </ul>
 </li>
 </ul>
@@ -1238,7 +1240,157 @@ By convention, the modifier is specified as the first optional parameter of a fu
 <li>
 <p>In real apps, having a 100% stateless composable can be difficult to achieve depending on the composable&#8217;s responsibilities. You should design your composables in a way that they will own as little state as possible and allow the state to be hoisted, when it makes sense, by exposing it in the composable&#8217;s API.</p>
 </li>
+<li>
+<p><strong>Key Point</strong>: When hoisting state, there are three rules to help you figure out where state should go:</p>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>State should be hoisted to at least the lowest common parent of all composables that use the state (read).</p>
+</li>
+<li>
+<p>State should be hoisted to at least the highest level it may be changed (write).</p>
+</li>
+<li>
+<p>If two states change in response to the same events they should be hoisted to the same level.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>You can hoist the state higher than these rules require, but if you don&#8217;t hoist the state high enough, it might be difficult or impossible to follow unidirectional data flow.</p>
+</li>
 </ul>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_viewmodel"><a class="anchor" href="#_viewmodel"></a>8.6. ViewModel</h3>
+<div class="paragraph">
+<p>ViewModels provide the UI state and access to the business logic located in other layers of the app. Additionally, ViewModels survive configuration changes, so they have a longer lifetime than the Composition. They can follow the lifecycle of the host of Compose content—that is, activities, fragments, or the destination of a Navigation graph if you&#8217;re using Compose Navigation.</p>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">WARNING</div>
+<div class="paragraph">
+<p>ViewModels are not part of the Composition. Therefore, you should not hold state created in composables (for example, a remembered value) because this could cause memory leaks.</p>
+</div>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="kotlin"><span class="k">import</span> <span class="nn">androidx.compose.runtime.toMutableStateList</span>
+<span class="k">import</span> <span class="nn">androidx.lifecycle.ViewModel</span>
+
+<span class="kd">class</span> <span class="nc">WellnessViewModel</span> <span class="p">:</span> <span class="nc">ViewModel</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">_tasks</span> <span class="p">=</span> <span class="nf">getWellnessTasks</span><span class="p">().</span><span class="nf">toMutableStateList</span><span class="p">()</span>
+
+    <span class="kd">val</span> <span class="py">tasks</span> <span class="p">:</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">WellnessTask</span><span class="p">&gt;</span>
+        <span class="k">get</span><span class="p">()</span> <span class="p">=</span> <span class="n">_tasks</span>    <i class="conum" data-value="1"></i><b>(1)</b>
+
+    <span class="k">fun</span> <span class="nf">remove</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="nc">WellnessTask</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">_tasks</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">fun</span> <span class="nf">changeTaskChecked</span><span class="p">(</span><span class="n">item</span><span class="p">:</span> <span class="nc">WellnessTask</span><span class="p">,</span> <span class="n">checked</span><span class="p">:</span> <span class="nc">Boolean</span><span class="p">)</span> <span class="p">=</span>
+        <span class="n">tasks</span><span class="p">.</span><span class="nf">find</span> <span class="p">{</span> <span class="n">it</span><span class="p">.</span><span class="n">id</span> <span class="p">==</span> <span class="n">item</span><span class="p">.</span><span class="n">id</span> <span class="p">}</span><span class="o">?.</span><span class="nf">let</span> <span class="p">{</span> <span class="n">task</span> <span class="p">-&gt;</span>    <i class="conum" data-value="2"></i><b>(2)</b>
+            <span class="n">task</span><span class="p">.</span><span class="n">checked</span> <span class="p">=</span> <span class="n">checked</span>
+        <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="k">private</span> <span class="k">fun</span> <span class="nf">getWellnessTasks</span><span class="p">()</span> <span class="p">=</span> <span class="nc">List</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span> <span class="p">{</span> <span class="n">i</span> <span class="p">-&gt;</span>
+    <span class="nc">WellnessTask</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="s">"Task # $i"</span><span class="p">)</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Rückgabe einer immutable List</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Für <code>?let</code> siehe <a href="https://youtu.be/0sPzDwS55wM?t=534" class="bare">https://youtu.be/0sPzDwS55wM?t=534</a></td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="title">Verwendung des ViewModels</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="kotlin"><span class="nd">@Composable</span>
+<span class="k">fun</span> <span class="nf">WellnessScreen</span><span class="p">(</span>
+    <span class="n">modifier</span><span class="p">:</span> <span class="nc">Modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">,</span>
+    <span class="n">wellnessViewModel</span><span class="p">:</span> <span class="nc">WellnessViewModel</span> <span class="p">=</span> <span class="nf">viewModel</span><span class="p">()</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="p">)</span> <span class="p">{</span>
+    <span class="nc">Column</span><span class="p">(</span><span class="n">modifier</span> <span class="p">=</span> <span class="n">modifier</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nc">StatefulCounter</span><span class="p">()</span>
+
+        <span class="nc">WellnessTasksList</span><span class="p">(</span>
+            <span class="n">list</span> <span class="p">=</span> <span class="n">wellnessViewModel</span><span class="p">.</span><span class="n">tasks</span><span class="p">,</span>
+            <span class="n">onCloseTask</span> <span class="p">=</span> <span class="p">{</span> <span class="n">task</span> <span class="p">-&gt;</span> <span class="n">wellnessViewModel</span><span class="p">.</span><span class="nf">remove</span><span class="p">(</span><span class="n">task</span><span class="p">)})</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>viewModel() returns an existing ViewModel or creates a new one in the given scope. The ViewModel instance is retained as long as the scope is alive. For example, if the composable is used in an activity, viewModel() returns the same instance until the activity is finished or the process is killed.</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>ViewModels are recommended to be used at screen-level composables, that is, close to a root composable called from an activity, fragment, or destination of a Navigation graph.</p>
+</li>
+<li>
+<p>ViewModels should never be passed down to other composables, instead you should pass only the data they need and functions that perform the required logic as parameters.</p>
+</li>
+<li>
+<p>Check the <a href="https://developer.android.com/jetpack/compose/state#viewmodels-source-of-truth" target="_blank" rel="noopener">ViewModel and state holders section</a> and our <a href="https://developer.android.com/jetpack/compose/libraries#viewmodel" target="_blank" rel="noopener">Compose and other libraries</a> documentation to learn more.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_problem"><a class="anchor" href="#_problem"></a>8.7. Problem</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Run the app and try to check any task. Notice that checking any task doesn&#8217;t quite work yet.</p>
+<div class="paragraph">
+<p>This is because what Compose is tracking for the MutableList are <strong>changes related to adding and removing elements</strong>. This is why deleting works. But it&#8217;s unaware of changes in the row item values (checkedState in our case), unless you tell it to track them too.</p>
+</div>
+</li>
+<li>
+<p>There are two ways to fix this:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Change our data class WellnessTask so that checkedState becomes MutableState&lt;Boolean&gt; instead of Boolean, which causes Compose to track an item change.</p>
+</li>
+<li>
+<p>Copy the item you&#8217;re about to mutate, remove the item from your list and re-add the mutated item to the list, which causes Compose to track that list change.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>There are pros and cons to both approaches. For example, depending on your implementation of the list you&#8217;re using, removing and reading the element might be costly.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">neue data class</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="kotlin"><span class="kd">data class</span> <span class="nc">WellnessTask</span> <span class="p">(</span>
+    <span class="kd">val</span> <span class="py">id</span><span class="p">:</span> <span class="nc">Int</span><span class="p">,</span>
+    <span class="kd">val</span> <span class="py">label</span><span class="p">:</span> <span class="nc">String</span><span class="p">,</span>
+    <span class="kd">var</span> <span class="py">checked</span><span class="p">:</span> <span class="nc">MutableState</span><span class="p">&lt;</span><span class="nc">Boolean</span><span class="p">&gt;</span> <span class="p">=</span> <span class="nf">mutableStateOf</span><span class="p">(</span><span class="k">false</span><span class="p">)</span>
+<span class="p">)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1248,7 +1400,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2022-05-22 07:50:28 UTC
+Last updated 2022-05-29 19:12:37 UTC
 </div>
 </div>
 </body>
