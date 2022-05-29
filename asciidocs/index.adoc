@@ -130,7 +130,7 @@ State determines what is shown in the UI at any particular time.
 It's a good practice to provide *a default Modifier* to all composable functions, as it increases reusability. It should appear as the *first optional parameter* in the parameter list, after all required parameters.
 ****
 
-== Events in Compose
+=== Events in Compose
 
 image::state-ui-update-loop.png[]
 
@@ -413,6 +413,8 @@ data class WellnessTask (
     var checked: MutableState<Boolean> = mutableStateOf(false)
 )
 ----
+
+== Advanced State and Side Effects in Jetpack Compose
 
 
 
