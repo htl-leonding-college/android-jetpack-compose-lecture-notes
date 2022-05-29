@@ -314,5 +314,130 @@ is a composable that owns a piece of state that can change over time.
 
 
 
+* *Key Point*: When hoisting state, there are three rules to help you figure out where state should go:
+
+. State should be hoisted to at least the lowest common parent of all composables that use the state (read).
+. State should be hoisted to at least the highest level it may be changed (write).
+. If two states change in response to the same events they should be hoisted to the same level.
+
+* You can hoist the state higher than these rules require, but if you don't hoist the state high enough, it might be difficult or impossible to follow unidirectional data flow.
+
+=== ViewModel
+
+ViewModels provide the UI state and access to the business logic located in other layers of the app. Additionally, ViewModels survive configuration changes, so they have a longer lifetime than the Composition. They can follow the lifecycle of the host of Compose content—that is, activities, fragments, or the destination of a Navigation graph if you're using Compose Navigation.
+
+.WARNING
+****
+ViewModels are not part of the Composition. Therefore, you should not hold state created in composables (for example, a remembered value) because this could cause memory leaks.
+****
+
+
+[source,kotlin]
+----
+import androidx.compose.runtime.toMutableStateList
+import androidx.lifecycle.ViewModel
+
+class WellnessViewModel : ViewModel() {
+    private val _tasks = getWellnessTasks().toMutableStateList()
+
+    val tasks : List<WellnessTask>
+        get() = _tasks    // <.>
+
+    fun remove(item: WellnessTask) {
+        _tasks.remove(item)
+    }
+
+    fun changeTaskChecked(item: WellnessTask, checked: Boolean) =
+        tasks.find { it.id == item.id }?.let { task ->    // <.>
+            task.checked = checked
+        }
+}
+
+
+private fun getWellnessTasks() = List(30) { i ->
+    WellnessTask(i, "Task # $i")
+}
+----
+
+<.> Rückgabe einer immutable List
+<.> Für `?let` siehe https://youtu.be/0sPzDwS55wM?t=534
+// https://discuss.kotlinlang.org/t/let-vs-if-not-null/3542
+
+.Verwendung des ViewModels
+[source,kotlin]
+----
+@Composable
+fun WellnessScreen(
+    modifier: Modifier = Modifier,
+    wellnessViewModel: WellnessViewModel = viewModel()  // <.>
+    ) {
+    Column(modifier = modifier) {
+        StatefulCounter()
+
+        WellnessTasksList(
+            list = wellnessViewModel.tasks,
+            onCloseTask = { task -> wellnessViewModel.remove(task)})
+    }
+}
+----
+
+<.> viewModel() returns an existing ViewModel or creates a new one in the given scope. The ViewModel instance is retained as long as the scope is alive. For example, if the composable is used in an activity, viewModel() returns the same instance until the activity is finished or the process is killed.
+
+//--
+
+* ViewModels are recommended to be used at screen-level composables, that is, close to a root composable called from an activity, fragment, or destination of a Navigation graph.
+* ViewModels should never be passed down to other composables, instead you should pass only the data they need and functions that perform the required logic as parameters.
+
+* Check the https://developer.android.com/jetpack/compose/state#viewmodels-source-of-truth[ViewModel and state holders section^] and our https://developer.android.com/jetpack/compose/libraries#viewmodel[Compose and other libraries^] documentation to learn more.
+
+
+=== Problem
+
+* Run the app and try to check any task. Notice that checking any task doesn't quite work yet.
++
+This is because what Compose is tracking for the MutableList are *changes related to adding and removing elements*. This is why deleting works. But it's unaware of changes in the row item values (checkedState in our case), unless you tell it to track them too.
+
+* There are two ways to fix this:
+
+** Change our data class WellnessTask so that checkedState becomes MutableState<Boolean> instead of Boolean, which causes Compose to track an item change.
+** Copy the item you're about to mutate, remove the item from your list and re-add the mutated item to the list, which causes Compose to track that list change.
+
+* There are pros and cons to both approaches. For example, depending on your implementation of the list you're using, removing and reading the element might be costly.
+
+.neue data class
+[source,kotlin]
+----
+data class WellnessTask (
+    val id: Int,
+    val label: String,
+    var checked: MutableState<Boolean> = mutableStateOf(false)
+)
+----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
