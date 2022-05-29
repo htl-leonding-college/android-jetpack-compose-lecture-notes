@@ -677,18 +677,19 @@ pre.rouge {
 <li><a href="#_scaffold">6.2. Scaffold</a></li>
 </ul>
 </li>
-<li><a href="#_state_in_jetpack_compose">7. State in Jetpack Compose</a></li>
-<li><a href="#_events_in_compose">8. Events in Compose</a>
+<li><a href="#_state_in_jetpack_compose">7. State in Jetpack Compose</a>
 <ul class="sectlevel2">
-<li><a href="#_memory_in_a_composable_function">8.1. Memory in a composable function</a></li>
-<li><a href="#_state_driven_ui">8.2. State driven UI</a></li>
-<li><a href="#_remember_in_composition">8.3. Remember in Composition</a></li>
-<li><a href="#_restore_state_in_compose">8.4. Restore state in Compose</a></li>
-<li><a href="#_state_hoisting">8.5. State hoisting</a></li>
-<li><a href="#_viewmodel">8.6. ViewModel</a></li>
-<li><a href="#_problem">8.7. Problem</a></li>
+<li><a href="#_events_in_compose">7.1. Events in Compose</a></li>
+<li><a href="#_memory_in_a_composable_function">7.2. Memory in a composable function</a></li>
+<li><a href="#_state_driven_ui">7.3. State driven UI</a></li>
+<li><a href="#_remember_in_composition">7.4. Remember in Composition</a></li>
+<li><a href="#_restore_state_in_compose">7.5. Restore state in Compose</a></li>
+<li><a href="#_state_hoisting">7.6. State hoisting</a></li>
+<li><a href="#_viewmodel">7.7. ViewModel</a></li>
+<li><a href="#_problem">7.8. Problem</a></li>
 </ul>
 </li>
+<li><a href="#_advanced_state_and_side_effects_in_jetpack_compose">8. Advanced State and Side Effects in Jetpack Compose</a></li>
 </ul>
 </div>
 </div>
@@ -876,11 +877,8 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_events_in_compose"><a class="anchor" href="#_events_in_compose"></a>8. Events in Compose</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_events_in_compose"><a class="anchor" href="#_events_in_compose"></a>7.1. Events in Compose</h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/state-ui-update-loop.png" alt="state ui update loop">
@@ -900,8 +898,9 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_memory_in_a_composable_function"><a class="anchor" href="#_memory_in_a_composable_function"></a>8.1. Memory in a composable function</h3>
+<h3 id="_memory_in_a_composable_function"><a class="anchor" href="#_memory_in_a_composable_function"></a>7.2. Memory in a composable function</h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/state-composition-recomposition.png" alt="state composition recomposition">
@@ -1005,7 +1004,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_state_driven_ui"><a class="anchor" href="#_state_driven_ui"></a>8.2. State driven UI</h3>
+<h3 id="_state_driven_ui"><a class="anchor" href="#_state_driven_ui"></a>7.3. State driven UI</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1022,7 +1021,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect3">
-<h4 id="_layout_inspector"><a class="anchor" href="#_layout_inspector"></a>8.2.1. Layout Inspector</h4>
+<h4 id="_layout_inspector"><a class="anchor" href="#_layout_inspector"></a>7.3.1. Layout Inspector</h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/state-layout-inspector.png" alt="state layout inspector">
@@ -1030,7 +1029,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect3">
-<h4 id="_enabling_the_button"><a class="anchor" href="#_enabling_the_button"></a>8.2.2. Enabling the Button</h4>
+<h4 id="_enabling_the_button"><a class="anchor" href="#_enabling_the_button"></a>7.3.2. Enabling the Button</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="kotlin"><span class="nc">Button</span><span class="p">(</span>
@@ -1053,7 +1052,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remember_in_composition"><a class="anchor" href="#_remember_in_composition"></a>8.3. Remember in Composition</h3>
+<h3 id="_remember_in_composition"><a class="anchor" href="#_remember_in_composition"></a>7.4. Remember in Composition</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">remember</div>
@@ -1064,9 +1063,9 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_restore_state_in_compose"><a class="anchor" href="#_restore_state_in_compose"></a>8.4. Restore state in Compose</h3>
+<h3 id="_restore_state_in_compose"><a class="anchor" href="#_restore_state_in_compose"></a>7.5. Restore state in Compose</h3>
 <div class="sect3">
-<h4 id="_remembersaveable"><a class="anchor" href="#_remembersaveable"></a>8.4.1. rememberSaveable</h4>
+<h4 id="_remembersaveable"><a class="anchor" href="#_remembersaveable"></a>7.5.1. rememberSaveable</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1098,9 +1097,9 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_state_hoisting"><a class="anchor" href="#_state_hoisting"></a>8.5. State hoisting</h3>
+<h3 id="_state_hoisting"><a class="anchor" href="#_state_hoisting"></a>7.6. State hoisting</h3>
 <div class="sect3">
-<h4 id="_key_concepts"><a class="anchor" href="#_key_concepts"></a>8.5.1. key concepts</h4>
+<h4 id="_key_concepts"><a class="anchor" href="#_key_concepts"></a>7.6.1. key concepts</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1154,7 +1153,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect3">
-<h4 id="_hoisting"><a class="anchor" href="#_hoisting"></a>8.5.2. Hoisting</h4>
+<h4 id="_hoisting"><a class="anchor" href="#_hoisting"></a>7.6.2. Hoisting</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1218,7 +1217,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect3">
-<h4 id="_stateful_vs_stateless"><a class="anchor" href="#_stateful_vs_stateless"></a>8.5.3. Stateful vs Stateless</h4>
+<h4 id="_stateful_vs_stateless"><a class="anchor" href="#_stateful_vs_stateless"></a>7.6.3. Stateful vs Stateless</h4>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">A stateless composable</div>
@@ -1264,7 +1263,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_viewmodel"><a class="anchor" href="#_viewmodel"></a>8.6. ViewModel</h3>
+<h3 id="_viewmodel"><a class="anchor" href="#_viewmodel"></a>7.7. ViewModel</h3>
 <div class="paragraph">
 <p>ViewModels provide the UI state and access to the business logic located in other layers of the app. Additionally, ViewModels survive configuration changes, so they have a longer lifetime than the Composition. They can follow the lifecycle of the host of Compose content—that is, activities, fragments, or the destination of a Navigation graph if you&#8217;re using Compose Navigation.</p>
 </div>
@@ -1356,7 +1355,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_problem"><a class="anchor" href="#_problem"></a>8.7. Problem</h3>
+<h3 id="_problem"><a class="anchor" href="#_problem"></a>7.8. Problem</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1396,11 +1395,17 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 </div>
+<div class="sect1">
+<h2 id="_advanced_state_and_side_effects_in_jetpack_compose"><a class="anchor" href="#_advanced_state_and_side_effects_in_jetpack_compose"></a>8. Advanced State and Side Effects in Jetpack Compose</h2>
+<div class="sectionbody">
+
+</div>
+</div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2022-05-29 19:12:37 UTC
+Last updated 2022-05-29 19:15:38 UTC
 </div>
 </div>
 </body>
