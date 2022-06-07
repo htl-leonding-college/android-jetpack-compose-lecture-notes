@@ -424,6 +424,8 @@ data class WellnessTask (
 
 == Advanced State and Side Effects in Jetpack Compose
 
+* https://www.youtube.com/playlist?list=PLQkwcJG4YTCQcFEPuYGuv54nYai_lwil_[Einführung in Coroutines^]
+
 === Consuming a Flow from the ViewModel
 
 * We want our UI in the `CraneHomeContent` composable to update whenever there's a new item emitted into the `suggestedDestinations` stream of data.
@@ -582,14 +584,32 @@ fun CraneHome(
 IMPORTANT: Using LaunchedEffect in this case wasn't possible because we needed to trigger the call to create a coroutine in a regular callback that was outside of the Composition.
 
 
+=== Creating a state holder
+
+* https://developer.android.com/codelabs/jetpack-compose-advanced-state-side-effects?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fcompose%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fjetpack-compose-advanced-state-side-effects#5[Pathway: Creating a state holder^]
+
+* Der Status von einzelnen Komponenten (hier zB Texteingabe) soll sich nicht in der Komponente selbst befinden, sondern in einem `state holder` gespeichert sein.
+
+* Durch einen solchen state holder können alle Statusänderungen an einem Ort zentralisiert werden.
+
+* Auch hier wird wieder hoisting verwendet, da solche low-level UI Komponenten oft wiederverwendet werden.
+
+==== Creating a custom saver
+
+* Ein *custom saver* wird benötigt, um beliebige Objekte saveable zu machen. Nicht nur Datentypen, die in einem *Bundle* gespeichert werden können.
+
+* Dabei werden die folgenden functions überschrieben:
+** save
+** restore
 
 
+==== snapshotFlow-API
 
+* We've already used LaunchedEffect and rememberUpdatedState before, but the code in the tutorial also uses a new API!
 
+* We use the https://developer.android.com/jetpack/compose/side-effects#snapshotFlow[snapshotFlow API^] *to convert Compose State<T> objects into a Flow*. When the state read inside snapshotFlow mutates, the Flow will emit the new value to the collector.
 
-
-
-
+* In our case, we convert the state into a flow to use the power of flow operators. With that, we filter when the text is not the hint, and collect the emitted items to notify the parent that the current destination changed.
 
 
 
