@@ -660,7 +660,7 @@ pre.rouge {
 <div class="details">
 <span id="author" class="author">Thomas W. Stütz</span><br>
 <span id="revnumber">version 0.0.1,</span>
-<span id="revdate">2022-05-29</span>
+<span id="revdate">2022-06-07</span>
 <br><span id="revremark">android, kotlin, jetpack compose</span>
 </div>
 <div id="toc" class="toc2">
@@ -689,7 +689,12 @@ pre.rouge {
 <li><a href="#_problem">7.8. Problem</a></li>
 </ul>
 </li>
-<li><a href="#_advanced_state_and_side_effects_in_jetpack_compose">8. Advanced State and Side Effects in Jetpack Compose</a></li>
+<li><a href="#_advanced_state_and_side_effects_in_jetpack_compose">8. Advanced State and Side Effects in Jetpack Compose</a>
+<ul class="sectlevel2">
+<li><a href="#_consuming_a_flow_from_the_viewmodel">8.1. Consuming a Flow from the ViewModel</a></li>
+<li><a href="#_launchedeffect_and_rememberupdatedstate">8.2. LaunchedEffect and rememberUpdatedState</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </div>
@@ -1398,14 +1403,127 @@ By convention, the modifier is specified as the first optional parameter of a fu
 <div class="sect1">
 <h2 id="_advanced_state_and_side_effects_in_jetpack_compose"><a class="anchor" href="#_advanced_state_and_side_effects_in_jetpack_compose"></a>8. Advanced State and Side Effects in Jetpack Compose</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_consuming_a_flow_from_the_viewmodel"><a class="anchor" href="#_consuming_a_flow_from_the_viewmodel"></a>8.1. Consuming a Flow from the ViewModel</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>We want our UI in the <code>CraneHomeContent</code> composable to update whenever there&#8217;s a new item emitted into the <code>suggestedDestinations</code> stream of data.</p>
+</li>
+<li>
+<p>We can use the <strong><code>StateFlow.collectAsState()</code></strong> function. When used in a composable function, <code>collectAsState()</code> collects values from the <code>StateFlow</code> and represents the latest value via Compose&#8217;s State API. This will make the Compose code that reads that state value recompose on new emissions.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="kotlin"><span class="k">import</span> <span class="nn">androidx.compose.runtime.collectAsState</span>
 
+<span class="nd">@Composable</span>
+<span class="k">fun</span> <span class="nf">CraneHomeContent</span><span class="p">(</span>
+    <span class="n">onExploreItemClicked</span><span class="p">:</span> <span class="nc">OnExploreItemClicked</span><span class="p">,</span>
+    <span class="n">openDrawer</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nc">Unit</span><span class="p">,</span>
+    <span class="n">modifier</span><span class="p">:</span> <span class="nc">Modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">,</span>
+    <span class="n">viewModel</span><span class="p">:</span> <span class="nc">MainViewModel</span> <span class="p">=</span> <span class="nf">viewModel</span><span class="p">(),</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">suggestedDestinations</span> <span class="k">by</span> <span class="n">viewModel</span><span class="p">.</span><span class="n">suggestedDestinations</span><span class="p">.</span><span class="nf">collectAsState</span><span class="p">()</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="c1">// ...</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Hier wird festgelegt, daß die Collection suggestedDestinations ein State ist, also observable ist, wodurch bei Änderung die UI automatisch aktualisiert wird
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://stackoverflow.com/questions/38250022/what-does-by-keyword-do-in-kotlin" target="_blank" rel="noopener">What does 'by' keyword do in Kotlin?</a></p>
+</li>
+</ul>
+</div></td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Compose also offers APIs for Android&#8217;s most popular stream-based solutions:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>LiveData.observeAsState()</p>
+</li>
+<li>
+<p>Observable.subscribeAsState()</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_launchedeffect_and_rememberupdatedstate"><a class="anchor" href="#_launchedeffect_and_rememberupdatedstate"></a>8.2. LaunchedEffect and rememberUpdatedState</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>In the project, there&#8217;s a home/LandingScreen.kt file that&#8217;s not used at the moment. We want to add a <strong>landing screen</strong> to the app, which potentially could be used to <strong>load all the data needed in the background</strong>.</p>
+</li>
+<li>
+<p>The landing screen will occupy the whole screen and show the app&#8217;s logo in the middle of the screen. Ideally, we&#8217;d show the screen and—after all the data&#8217;s been loaded—we&#8217;d notify the caller that the landing screen can be dismissed using the onTimeout callback.</p>
+</li>
+<li>
+<p><strong>Kotlin coroutines are the recommended way to perform asynchronous operations</strong> in Android. An app would usually use coroutines to load things in the background when it starts. Jetpack Compose offers APIs that make using coroutines safe within the UI layer. As this app doesn&#8217;t communicate with a backend, we&#8217;ll use the coroutines' delay function to simulate loading things in the background.</p>
+</li>
+</ul>
+</div>
+<div class="sidebarblock">
+<div class="content">
+<div class="title">side-effect in Compose</div>
+<div class="paragraph">
+<p>A side-effect in Compose is a change to the state of the app that happens outside the scope of a composable function. For example, opening a new screen when the user taps on a button, or showing a message when the app doesn&#8217;t have Internet connection.</p>
+</div>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Changing the state to show/hide the landing screen will happen in the <strong>onTimeout callback</strong> and since before calling onTimeout we need to load things using coroutines, the state change needs to happen in the context of a coroutine!</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="title">home/LandingScreen.kt file</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="kotlin"><span class="k">import</span> <span class="nn">androidx.compose.runtime.LaunchedEffect</span>
+<span class="k">import</span> <span class="nn">kotlinx.coroutines.delay</span>
+
+<span class="nd">@Composable</span>
+<span class="k">fun</span> <span class="nf">LandingScreen</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span> <span class="nc">Modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">,</span> <span class="n">onTimeout</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nc">Unit</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nc">Box</span><span class="p">(</span><span class="n">modifier</span> <span class="p">=</span> <span class="n">modifier</span><span class="p">.</span><span class="nf">fillMaxSize</span><span class="p">(),</span> <span class="n">contentAlignment</span> <span class="p">=</span> <span class="nc">Alignment</span><span class="p">.</span><span class="nc">Center</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// Start a side effect to load things in the background</span>
+        <span class="c1">// and call onTimeout() when finished.</span>
+        <span class="c1">// Passing onTimeout as a parameter to LaunchedEffect</span>
+        <span class="c1">// is wrong! Don't do this. We'll improve this code in a sec.</span>
+        <span class="nc">LaunchedEffect</span><span class="p">(</span><span class="n">onTimeout</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nf">delay</span><span class="p">(</span><span class="nc">SplashWaitTime</span><span class="p">)</span> <span class="c1">// Simulates loading things</span>
+            <span class="nf">onTimeout</span><span class="p">()</span>
+        <span class="p">}</span>
+        <span class="nc">Image</span><span class="p">(</span><span class="nf">painterResource</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="nc">R</span><span class="p">.</span><span class="n">drawable</span><span class="p">.</span><span class="n">ic_crane_drawer</span><span class="p">),</span> <span class="n">contentDescription</span> <span class="p">=</span> <span class="k">null</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2022-05-29 19:15:38 UTC
+Last updated 2022-06-07 15:01:59 UTC
 </div>
 </div>
 </body>
