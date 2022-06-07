@@ -695,6 +695,7 @@ pre.rouge {
 <li><a href="#_consuming_a_flow_from_the_viewmodel">9.1. Consuming a Flow from the ViewModel</a></li>
 <li><a href="#_launchedeffect_and_rememberupdatedstate">9.2. LaunchedEffect and rememberUpdatedState</a></li>
 <li><a href="#_remembercoroutinescope">9.3. rememberCoroutineScope</a></li>
+<li><a href="#_creating_a_state_holder">9.4. Creating a state holder</a></li>
 </ul>
 </li>
 </ul>
@@ -1432,6 +1433,13 @@ By convention, the modifier is specified as the first optional parameter of a fu
 <div class="sect1">
 <h2 id="_advanced_state_and_side_effects_in_jetpack_compose"><a class="anchor" href="#_advanced_state_and_side_effects_in_jetpack_compose"></a>9. Advanced State and Side Effects in Jetpack Compose</h2>
 <div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.youtube.com/playlist?list=PLQkwcJG4YTCQcFEPuYGuv54nYai_lwil_" target="_blank" rel="noopener">Einführung in Coroutines</a></p>
+</li>
+</ul>
+</div>
 <div class="sect2">
 <h3 id="_consuming_a_flow_from_the_viewmodel"><a class="anchor" href="#_consuming_a_flow_from_the_viewmodel"></a>9.1. Consuming a Flow from the ViewModel</h3>
 <div class="ulist">
@@ -1673,13 +1681,71 @@ Using LaunchedEffect in this case wasn&#8217;t possible because we needed to tri
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_creating_a_state_holder"><a class="anchor" href="#_creating_a_state_holder"></a>9.4. Creating a state holder</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://developer.android.com/codelabs/jetpack-compose-advanced-state-side-effects?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fcompose%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fjetpack-compose-advanced-state-side-effects#5" target="_blank" rel="noopener">Pathway: Creating a state holder</a></p>
+</li>
+<li>
+<p>Der Status von einzelnen Komponenten (hier zB Texteingabe) soll sich nicht in der Komponente selbst befinden, sondern in einem <code>state holder</code> gespeichert sein.</p>
+</li>
+<li>
+<p>Durch einen solchen state holder können alle Statusänderungen an einem Ort zentralisiert werden.</p>
+</li>
+<li>
+<p>Auch hier wird wieder hoisting verwendet, da solche low-level UI Komponenten oft wiederverwendet werden.</p>
+</li>
+</ul>
+</div>
+<div class="sect3">
+<h4 id="_creating_a_custom_saver"><a class="anchor" href="#_creating_a_custom_saver"></a>9.4.1. Creating a custom saver</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>Ein <strong>custom saver</strong> wird benötigt, um beliebige Objekte saveable zu machen. Nicht nur Datentypen, die in einem <strong>Bundle</strong> gespeichert werden können.</p>
+</li>
+<li>
+<p>Dabei werden die folgenden functions überschrieben:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>save</p>
+</li>
+<li>
+<p>restore</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_snapshotflow_api"><a class="anchor" href="#_snapshotflow_api"></a>9.4.2. snapshotFlow-API</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>We&#8217;ve already used LaunchedEffect and rememberUpdatedState before, but the code in the tutorial also uses a new API!</p>
+</li>
+<li>
+<p>We use the <a href="https://developer.android.com/jetpack/compose/side-effects#snapshotFlow" target="_blank" rel="noopener">snapshotFlow API</a> <strong>to convert Compose State&lt;T&gt; objects into a Flow</strong>. When the state read inside snapshotFlow mutates, the Flow will emit the new value to the collector.</p>
+</li>
+<li>
+<p>In our case, we convert the state into a flow to use the power of flow operators. With that, we filter when the text is not the hint, and collect the emitted items to notify the parent that the current destination changed.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2022-06-07 16:06:26 UTC
+Last updated 2022-06-07 17:29:13 UTC
 </div>
 </div>
 </body>
