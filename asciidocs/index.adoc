@@ -611,14 +611,15 @@ IMPORTANT: Using LaunchedEffect in this case wasn't possible because we needed t
 
 * In our case, we convert the state into a flow to use the power of flow operators. With that, we filter when the text is not the hint, and collect the emitted items to notify the parent that the current destination changed.
 
+=== DisposableEffect
+
+* https://developer.android.com/codelabs/jetpack-compose-advanced-state-side-effects?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fcompose%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fjetpack-compose-advanced-state-side-effects#6[Pathway: DisposableEffect^]
+
+* Verwendung einer Map. Ist eine View und kein Composable. Hat daher eigenen Lebenszyklus.
+
+* Daher wird ein LifecycleEventObserver benötigt.
 
 
-
-
-
-
-
-
-
+* The side-effect API we're looking for is https://developer.android.com/jetpack/compose/side-effects#disposableeffect[DisposableEffect^].
 
 
