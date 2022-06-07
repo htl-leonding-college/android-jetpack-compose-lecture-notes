@@ -697,6 +697,7 @@ pre.rouge {
 <li><a href="#_remembercoroutinescope">9.3. rememberCoroutineScope</a></li>
 <li><a href="#_creating_a_state_holder">9.4. Creating a state holder</a></li>
 <li><a href="#_disposableeffect">9.5. DisposableEffect</a></li>
+<li><a href="#_producestate">9.6. produceState</a></li>
 </ul>
 </li>
 </ul>
@@ -1759,13 +1760,32 @@ Using LaunchedEffect in this case wasn&#8217;t possible because we needed to tri
 </ul>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_producestate"><a class="anchor" href="#_producestate"></a>9.6. produceState</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://developer.android.com/codelabs/jetpack-compose-advanced-state-side-effects?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fcompose%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fjetpack-compose-advanced-state-side-effects#7">Pathway: produceState</a></p>
+</li>
+<li>
+<p>Synchronisieren der cityDetails mit dem ViewModel</p>
+</li>
+<li>
+<p>Anstelle eines StateFlows des Typs DetailsUiState wird hier eine neue API, die <a href="https://developer.android.com/jetpack/compose/side-effects#producestate" target="_blank" rel="noopener">produceState-API</a> verwendet.</p>
+</li>
+<li>
+<p>produceState allows you to convert non-Compose state into Compose State. It launches a coroutine scoped to the Composition that can push values into the returned State using the value property. As with LaunchedEffect, produceState also takes keys to cancel and restart the computation.</p>
+</li>
+</ul>
+</div>
+</div>
 </div>
 </div>
 </div>
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2022-06-07 17:40:35 UTC
+Last updated 2022-06-07 17:53:59 UTC
 </div>
 </div>
 </body>
