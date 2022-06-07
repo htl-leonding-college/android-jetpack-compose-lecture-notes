@@ -634,10 +634,12 @@ IMPORTANT: Using LaunchedEffect in this case wasn't possible because we needed t
 * produceState allows you to convert non-Compose state into Compose State. It launches a coroutine scoped to the Composition that can push values into the returned State using the value property. As with LaunchedEffect, produceState also takes keys to cancel and restart the computation.
 
 
+== derivedStateOf
+
+* https://developer.android.com/codelabs/jetpack-compose-advanced-state-side-effects?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fcompose%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fjetpack-compose-advanced-state-side-effects#8[Pathway: derivedStateOf^]
 
 
-
-
+* https://developer.android.com/jetpack/compose/side-effects#derivedstateof[derivedStateOf^] is used when you *want a Compose State that's derived from another State*. Using this function guarantees that the calculation will only occur whenever one of the states used in the calculation changes.
 
 
 
