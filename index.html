@@ -666,33 +666,35 @@ pre.rouge {
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_prerequisites_what_students_have_to_prepare">1. Prerequisites - What students have to prepare</a></li>
-<li><a href="#_foundations_kotlin">2. Foundations Kotlin</a></li>
-<li><a href="#_first_app_with_android_w_xml">3. First App With Android (w/ xml)</a></li>
-<li><a href="#_foundations_jetpack_compose">4. Foundations Jetpack Compose</a></li>
-<li><a href="#_lab_simple_text_app">5. Lab: Simple Text App</a></li>
-<li><a href="#_basic_layouts_in_compose">6. Basic Layouts in Compose</a>
+<li><a href="#_resources_jetpack_compose">1. Resources Jetpack Compose</a></li>
+<li><a href="#_prerequisites_what_students_have_to_prepare">2. Prerequisites - What students have to prepare</a></li>
+<li><a href="#_foundations_kotlin">3. Foundations Kotlin</a></li>
+<li><a href="#_first_app_with_android_w_xml">4. First App With Android (w/ xml)</a></li>
+<li><a href="#_foundations_jetpack_compose">5. Foundations Jetpack Compose</a></li>
+<li><a href="#_lab_simple_text_app">6. Lab: Simple Text App</a></li>
+<li><a href="#_basic_layouts_in_compose">7. Basic Layouts in Compose</a>
 <ul class="sectlevel2">
-<li><a href="#_slot_apis">6.1. Slot APIs</a></li>
-<li><a href="#_scaffold">6.2. Scaffold</a></li>
+<li><a href="#_slot_apis">7.1. Slot APIs</a></li>
+<li><a href="#_scaffold">7.2. Scaffold</a></li>
 </ul>
 </li>
-<li><a href="#_state_in_jetpack_compose">7. State in Jetpack Compose</a>
+<li><a href="#_state_in_jetpack_compose">8. State in Jetpack Compose</a>
 <ul class="sectlevel2">
-<li><a href="#_events_in_compose">7.1. Events in Compose</a></li>
-<li><a href="#_memory_in_a_composable_function">7.2. Memory in a composable function</a></li>
-<li><a href="#_state_driven_ui">7.3. State driven UI</a></li>
-<li><a href="#_remember_in_composition">7.4. Remember in Composition</a></li>
-<li><a href="#_restore_state_in_compose">7.5. Restore state in Compose</a></li>
-<li><a href="#_state_hoisting">7.6. State hoisting</a></li>
-<li><a href="#_viewmodel">7.7. ViewModel</a></li>
-<li><a href="#_problem">7.8. Problem</a></li>
+<li><a href="#_events_in_compose">8.1. Events in Compose</a></li>
+<li><a href="#_memory_in_a_composable_function">8.2. Memory in a composable function</a></li>
+<li><a href="#_state_driven_ui">8.3. State driven UI</a></li>
+<li><a href="#_remember_in_composition">8.4. Remember in Composition</a></li>
+<li><a href="#_restore_state_in_compose">8.5. Restore state in Compose</a></li>
+<li><a href="#_state_hoisting">8.6. State hoisting</a></li>
+<li><a href="#_viewmodel">8.7. ViewModel</a></li>
+<li><a href="#_problem">8.8. Problem</a></li>
 </ul>
 </li>
-<li><a href="#_advanced_state_and_side_effects_in_jetpack_compose">8. Advanced State and Side Effects in Jetpack Compose</a>
+<li><a href="#_advanced_state_and_side_effects_in_jetpack_compose">9. Advanced State and Side Effects in Jetpack Compose</a>
 <ul class="sectlevel2">
-<li><a href="#_consuming_a_flow_from_the_viewmodel">8.1. Consuming a Flow from the ViewModel</a></li>
-<li><a href="#_launchedeffect_and_rememberupdatedstate">8.2. LaunchedEffect and rememberUpdatedState</a></li>
+<li><a href="#_consuming_a_flow_from_the_viewmodel">9.1. Consuming a Flow from the ViewModel</a></li>
+<li><a href="#_launchedeffect_and_rememberupdatedstate">9.2. LaunchedEffect and rememberUpdatedState</a></li>
+<li><a href="#_remembercoroutinescope">9.3. rememberCoroutineScope</a></li>
 </ul>
 </li>
 </ul>
@@ -710,7 +712,22 @@ pre.rouge {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_prerequisites_what_students_have_to_prepare"><a class="anchor" href="#_prerequisites_what_students_have_to_prepare"></a>1. Prerequisites - What students have to prepare</h2>
+<h2 id="_resources_jetpack_compose"><a class="anchor" href="#_resources_jetpack_compose"></a>1. Resources Jetpack Compose</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://foso.github.io/Jetpack-Compose-Playground/" target="_blank" rel="noopener">Jetpack Compose Playground</a></p>
+</li>
+<li>
+<p><a href="https://www.jetpackcompose.net/">Jetpack Compose Tutorial von Ranjith Kumar</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_prerequisites_what_students_have_to_prepare"><a class="anchor" href="#_prerequisites_what_students_have_to_prepare"></a>2. Prerequisites - What students have to prepare</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -725,7 +742,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_foundations_kotlin"><a class="anchor" href="#_foundations_kotlin"></a>2. Foundations Kotlin</h2>
+<h2 id="_foundations_kotlin"><a class="anchor" href="#_foundations_kotlin"></a>3. Foundations Kotlin</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -743,7 +760,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_first_app_with_android_w_xml"><a class="anchor" href="#_first_app_with_android_w_xml"></a>3. First App With Android (w/ xml)</h2>
+<h2 id="_first_app_with_android_w_xml"><a class="anchor" href="#_first_app_with_android_w_xml"></a>4. First App With Android (w/ xml)</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -755,7 +772,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_foundations_jetpack_compose"><a class="anchor" href="#_foundations_jetpack_compose"></a>4. Foundations Jetpack Compose</h2>
+<h2 id="_foundations_jetpack_compose"><a class="anchor" href="#_foundations_jetpack_compose"></a>5. Foundations Jetpack Compose</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="app01-simple-text.html#_create_the_project">open doc</a></p>
@@ -763,7 +780,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_lab_simple_text_app"><a class="anchor" href="#_lab_simple_text_app"></a>5. Lab: Simple Text App</h2>
+<h2 id="_lab_simple_text_app"><a class="anchor" href="#_lab_simple_text_app"></a>6. Lab: Simple Text App</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -800,7 +817,7 @@ pre.rouge {
 </div>
 </div>
 <div class="sect1">
-<h2 id="_basic_layouts_in_compose"><a class="anchor" href="#_basic_layouts_in_compose"></a>6. Basic Layouts in Compose</h2>
+<h2 id="_basic_layouts_in_compose"><a class="anchor" href="#_basic_layouts_in_compose"></a>7. Basic Layouts in Compose</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -833,7 +850,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </table>
 </div>
 <div class="sect2">
-<h3 id="_slot_apis"><a class="anchor" href="#_slot_apis"></a>6.1. Slot APIs</h3>
+<h3 id="_slot_apis"><a class="anchor" href="#_slot_apis"></a>7.1. Slot APIs</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -843,13 +860,25 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_scaffold"><a class="anchor" href="#_scaffold"></a>6.2. Scaffold</h3>
-
+<h3 id="_scaffold"><a class="anchor" href="#_scaffold"></a>7.2. Scaffold</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>A <strong>Scaffold</strong> is a layout which implements the basic material design layout structure. You can add things like a TopBar, BottomBar, FAB or a Drawer.</p>
+</li>
+<li>
+<p>With the <strong>scaffoldState</strong> you can set the opening state of the drawer(DrawerState.Opened or DrawerState.Closed)</p>
+</li>
+<li>
+<p><a href="https://foso.github.io/Jetpack-Compose-Playground/material/scaffold/" target="_blank" rel="noopener">Scaffold on Jetpack Compose Playground</a></p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_state_in_jetpack_compose"><a class="anchor" href="#_state_in_jetpack_compose"></a>7. State in Jetpack Compose</h2>
+<h2 id="_state_in_jetpack_compose"><a class="anchor" href="#_state_in_jetpack_compose"></a>8. State in Jetpack Compose</h2>
 <div class="sectionbody">
 <div class="ulist">
 <ul>
@@ -883,7 +912,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_events_in_compose"><a class="anchor" href="#_events_in_compose"></a>7.1. Events in Compose</h3>
+<h3 id="_events_in_compose"><a class="anchor" href="#_events_in_compose"></a>8.1. Events in Compose</h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/state-ui-update-loop.png" alt="state ui update loop">
@@ -905,7 +934,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_memory_in_a_composable_function"><a class="anchor" href="#_memory_in_a_composable_function"></a>7.2. Memory in a composable function</h3>
+<h3 id="_memory_in_a_composable_function"><a class="anchor" href="#_memory_in_a_composable_function"></a>8.2. Memory in a composable function</h3>
 <div class="imageblock">
 <div class="content">
 <img src="images/state-composition-recomposition.png" alt="state composition recomposition">
@@ -1009,7 +1038,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_state_driven_ui"><a class="anchor" href="#_state_driven_ui"></a>7.3. State driven UI</h3>
+<h3 id="_state_driven_ui"><a class="anchor" href="#_state_driven_ui"></a>8.3. State driven UI</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1026,7 +1055,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect3">
-<h4 id="_layout_inspector"><a class="anchor" href="#_layout_inspector"></a>7.3.1. Layout Inspector</h4>
+<h4 id="_layout_inspector"><a class="anchor" href="#_layout_inspector"></a>8.3.1. Layout Inspector</h4>
 <div class="imageblock">
 <div class="content">
 <img src="images/state-layout-inspector.png" alt="state layout inspector">
@@ -1034,7 +1063,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect3">
-<h4 id="_enabling_the_button"><a class="anchor" href="#_enabling_the_button"></a>7.3.2. Enabling the Button</h4>
+<h4 id="_enabling_the_button"><a class="anchor" href="#_enabling_the_button"></a>8.3.2. Enabling the Button</h4>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="kotlin"><span class="nc">Button</span><span class="p">(</span>
@@ -1057,7 +1086,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_remember_in_composition"><a class="anchor" href="#_remember_in_composition"></a>7.4. Remember in Composition</h3>
+<h3 id="_remember_in_composition"><a class="anchor" href="#_remember_in_composition"></a>8.4. Remember in Composition</h3>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">remember</div>
@@ -1068,9 +1097,9 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_restore_state_in_compose"><a class="anchor" href="#_restore_state_in_compose"></a>7.5. Restore state in Compose</h3>
+<h3 id="_restore_state_in_compose"><a class="anchor" href="#_restore_state_in_compose"></a>8.5. Restore state in Compose</h3>
 <div class="sect3">
-<h4 id="_remembersaveable"><a class="anchor" href="#_remembersaveable"></a>7.5.1. rememberSaveable</h4>
+<h4 id="_remembersaveable"><a class="anchor" href="#_remembersaveable"></a>8.5.1. rememberSaveable</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1102,9 +1131,9 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_state_hoisting"><a class="anchor" href="#_state_hoisting"></a>7.6. State hoisting</h3>
+<h3 id="_state_hoisting"><a class="anchor" href="#_state_hoisting"></a>8.6. State hoisting</h3>
 <div class="sect3">
-<h4 id="_key_concepts"><a class="anchor" href="#_key_concepts"></a>7.6.1. key concepts</h4>
+<h4 id="_key_concepts"><a class="anchor" href="#_key_concepts"></a>8.6.1. key concepts</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1158,7 +1187,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect3">
-<h4 id="_hoisting"><a class="anchor" href="#_hoisting"></a>7.6.2. Hoisting</h4>
+<h4 id="_hoisting"><a class="anchor" href="#_hoisting"></a>8.6.2. Hoisting</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1222,7 +1251,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect3">
-<h4 id="_stateful_vs_stateless"><a class="anchor" href="#_stateful_vs_stateless"></a>7.6.3. Stateful vs Stateless</h4>
+<h4 id="_stateful_vs_stateless"><a class="anchor" href="#_stateful_vs_stateless"></a>8.6.3. Stateful vs Stateless</h4>
 <div class="sidebarblock">
 <div class="content">
 <div class="title">A stateless composable</div>
@@ -1268,7 +1297,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_viewmodel"><a class="anchor" href="#_viewmodel"></a>7.7. ViewModel</h3>
+<h3 id="_viewmodel"><a class="anchor" href="#_viewmodel"></a>8.7. ViewModel</h3>
 <div class="paragraph">
 <p>ViewModels provide the UI state and access to the business logic located in other layers of the app. Additionally, ViewModels survive configuration changes, so they have a longer lifetime than the Composition. They can follow the lifecycle of the host of Compose content—that is, activities, fragments, or the destination of a Navigation graph if you&#8217;re using Compose Navigation.</p>
 </div>
@@ -1360,7 +1389,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_problem"><a class="anchor" href="#_problem"></a>7.8. Problem</h3>
+<h3 id="_problem"><a class="anchor" href="#_problem"></a>8.8. Problem</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1401,10 +1430,10 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect1">
-<h2 id="_advanced_state_and_side_effects_in_jetpack_compose"><a class="anchor" href="#_advanced_state_and_side_effects_in_jetpack_compose"></a>8. Advanced State and Side Effects in Jetpack Compose</h2>
+<h2 id="_advanced_state_and_side_effects_in_jetpack_compose"><a class="anchor" href="#_advanced_state_and_side_effects_in_jetpack_compose"></a>9. Advanced State and Side Effects in Jetpack Compose</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_consuming_a_flow_from_the_viewmodel"><a class="anchor" href="#_consuming_a_flow_from_the_viewmodel"></a>8.1. Consuming a Flow from the ViewModel</h3>
+<h3 id="_consuming_a_flow_from_the_viewmodel"><a class="anchor" href="#_consuming_a_flow_from_the_viewmodel"></a>9.1. Consuming a Flow from the ViewModel</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1465,7 +1494,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 </div>
 </div>
 <div class="sect2">
-<h3 id="_launchedeffect_and_rememberupdatedstate"><a class="anchor" href="#_launchedeffect_and_rememberupdatedstate"></a>8.2. LaunchedEffect and rememberUpdatedState</h3>
+<h3 id="_launchedeffect_and_rememberupdatedstate"><a class="anchor" href="#_launchedeffect_and_rememberupdatedstate"></a>9.2. LaunchedEffect and rememberUpdatedState</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1497,23 +1526,150 @@ By convention, the modifier is specified as the first optional parameter of a fu
 <div class="listingblock">
 <div class="title">home/LandingScreen.kt file</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="kotlin"><span class="k">import</span> <span class="nn">androidx.compose.runtime.LaunchedEffect</span>
-<span class="k">import</span> <span class="nn">kotlinx.coroutines.delay</span>
+<pre class="rouge highlight"><code data-lang="kotlin"><span class="k">import</span> <span class="nn">androidx.compose.runtime.getValue</span>
+<span class="k">import</span> <span class="nn">androidx.compose.runtime.rememberUpdatedState</span>
 
 <span class="nd">@Composable</span>
 <span class="k">fun</span> <span class="nf">LandingScreen</span><span class="p">(</span><span class="n">modifier</span><span class="p">:</span> <span class="nc">Modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">,</span> <span class="n">onTimeout</span><span class="p">:</span> <span class="p">()</span> <span class="p">-&gt;</span> <span class="nc">Unit</span><span class="p">)</span> <span class="p">{</span>
     <span class="nc">Box</span><span class="p">(</span><span class="n">modifier</span> <span class="p">=</span> <span class="n">modifier</span><span class="p">.</span><span class="nf">fillMaxSize</span><span class="p">(),</span> <span class="n">contentAlignment</span> <span class="p">=</span> <span class="nc">Alignment</span><span class="p">.</span><span class="nc">Center</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1">// Start a side effect to load things in the background</span>
-        <span class="c1">// and call onTimeout() when finished.</span>
-        <span class="c1">// Passing onTimeout as a parameter to LaunchedEffect</span>
-        <span class="c1">// is wrong! Don't do this. We'll improve this code in a sec.</span>
-        <span class="nc">LaunchedEffect</span><span class="p">(</span><span class="n">onTimeout</span><span class="p">)</span> <span class="p">{</span>
-            <span class="nf">delay</span><span class="p">(</span><span class="nc">SplashWaitTime</span><span class="p">)</span> <span class="c1">// Simulates loading things</span>
-            <span class="nf">onTimeout</span><span class="p">()</span>
+        <span class="c1">// This will always refer to the latest onTimeout function that</span>
+        <span class="c1">// LandingScreen was recomposed with</span>
+        <span class="kd">val</span> <span class="py">currentOnTimeout</span> <span class="k">by</span> <span class="nf">rememberUpdatedState</span><span class="p">(</span><span class="n">onTimeout</span><span class="p">)</span>
+
+        <span class="c1">// Create an effect that matches the lifecycle of LandingScreen.</span>
+        <span class="c1">// If LandingScreen recomposes or onTimeout changes,</span>
+        <span class="c1">// the delay shouldn't start again.</span>
+        <span class="nc">LaunchedEffect</span><span class="p">(</span><span class="k">true</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nf">delay</span><span class="p">(</span><span class="nc">SplashWaitTime</span><span class="p">)</span>
+            <span class="nf">currentOnTimeout</span><span class="p">()</span>
         <span class="p">}</span>
+
         <span class="nc">Image</span><span class="p">(</span><span class="nf">painterResource</span><span class="p">(</span><span class="n">id</span> <span class="p">=</span> <span class="nc">R</span><span class="p">.</span><span class="n">drawable</span><span class="p">.</span><span class="n">ic_crane_drawer</span><span class="p">),</span> <span class="n">contentDescription</span> <span class="p">=</span> <span class="k">null</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="title">Showing the landing screen</div>
+<div class="content">
+<pre class="rouge highlight"><code data-lang="kotlin"><span class="c1">// home/MainActivity.kt file</span>
+
+<span class="k">import</span> <span class="nn">androidx.compose.runtime.getValue</span>
+<span class="k">import</span> <span class="nn">androidx.compose.runtime.mutableStateOf</span>
+<span class="k">import</span> <span class="nn">androidx.compose.runtime.remember</span>
+<span class="k">import</span> <span class="nn">androidx.compose.runtime.setValue</span>
+
+<span class="nd">@Composable</span>
+<span class="k">private</span> <span class="k">fun</span> <span class="nf">MainScreen</span><span class="p">(</span><span class="n">onExploreItemClicked</span><span class="p">:</span> <span class="nc">OnExploreItemClicked</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nc">Surface</span><span class="p">(</span><span class="n">color</span> <span class="p">=</span> <span class="nc">MaterialTheme</span><span class="p">.</span><span class="n">colors</span><span class="p">.</span><span class="n">primary</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="py">showLandingScreen</span> <span class="k">by</span> <span class="nf">remember</span> <span class="p">{</span> <span class="nf">mutableStateOf</span><span class="p">(</span><span class="k">true</span><span class="p">)</span> <span class="p">}</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">showLandingScreen</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nc">LandingScreen</span><span class="p">(</span><span class="n">onTimeout</span> <span class="p">=</span> <span class="p">{</span> <span class="n">showLandingScreen</span> <span class="p">=</span> <span class="k">false</span> <span class="p">})</span>
+        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+            <span class="nc">CraneHome</span><span class="p">(</span><span class="n">onExploreItemClicked</span> <span class="p">=</span> <span class="n">onExploreItemClicked</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_remembercoroutinescope"><a class="anchor" href="#_remembercoroutinescope"></a>9.3. rememberCoroutineScope</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Manche Compose APIs sind suspend functions. ZB zum Öffnen des navigation drawers</p>
+</li>
+<li>
+<p>Grund dafür: Das Öffnen des Drawers benötigt Zeit, Bewegung und vielleicht auch Animationen. Die Suspend-Function unterbricht die Ausführung der Coroutine an der Stelle wovon sie aufgerufen wird. Nach Fertigstellung der Coroutine wird die Ausführung fortgesetzt.</p>
+</li>
+<li>
+<p>scaffoldState.drawerState.open() must be called within a coroutine. What can we do? openDrawer is a simple callback function, therefore:</p>
+<div class="ulist">
+<ul>
+<li>
+<p>We cannot simply call suspend functions in it because openDrawer is not executed in the context of a coroutine.</p>
+</li>
+<li>
+<p>We cannot use LaunchedEffect as before because we cannot call composables in openDrawer. We&#8217;re not in the Composition.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>We want to be able to launch a coroutine which scope should we use? Ideally, we&#8217;d want a CoroutineScope that follows the lifecycle of its call-site. To do this, use the <strong>rememberCoroutineScope</strong> API. The scope will be automatically cancelled once it leaves the Composition. With that scope, you can start coroutines when you&#8217;re not in the Composition, for example, in the openDrawer callback.</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="rouge highlight"><code data-lang="kotlin"><span class="c1">// home/CraneHome.kt file</span>
+
+<span class="k">import</span> <span class="nn">androidx.compose.runtime.rememberCoroutineScope</span>
+<span class="k">import</span> <span class="nn">kotlinx.coroutines.launch</span>
+
+<span class="nd">@Composable</span>
+<span class="k">fun</span> <span class="nf">CraneHome</span><span class="p">(</span>
+    <span class="n">onExploreItemClicked</span><span class="p">:</span> <span class="nc">OnExploreItemClicked</span><span class="p">,</span>
+    <span class="n">modifier</span><span class="p">:</span> <span class="nc">Modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">,</span>
+<span class="p">)</span> <span class="p">{</span>
+    <span class="kd">val</span> <span class="py">scaffoldState</span> <span class="p">=</span> <span class="nf">rememberScaffoldState</span><span class="p">()</span>
+    <span class="nc">Scaffold</span><span class="p">(</span>
+        <span class="n">scaffoldState</span> <span class="p">=</span> <span class="n">scaffoldState</span><span class="p">,</span>
+        <span class="n">modifier</span> <span class="p">=</span> <span class="nc">Modifier</span><span class="p">.</span><span class="nf">statusBarsPadding</span><span class="p">(),</span>
+        <span class="n">drawerContent</span> <span class="p">=</span> <span class="p">{</span>
+            <span class="nc">CraneDrawer</span><span class="p">()</span>
+        <span class="p">}</span>
+    <span class="p">)</span> <span class="p">{</span>
+        <span class="kd">val</span> <span class="py">scope</span> <span class="p">=</span> <span class="nf">rememberCoroutineScope</span><span class="p">()</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+        <span class="nc">CraneHomeContent</span><span class="p">(</span>
+            <span class="n">modifier</span> <span class="p">=</span> <span class="n">modifier</span><span class="p">,</span>
+            <span class="n">onExploreItemClicked</span> <span class="p">=</span> <span class="n">onExploreItemClicked</span><span class="p">,</span>
+            <span class="n">openDrawer</span> <span class="p">=</span> <span class="p">{</span>
+                <span class="n">scope</span><span class="p">.</span><span class="nf">launch</span> <span class="p">{</span>
+                    <span class="n">scaffoldState</span><span class="p">.</span><span class="n">drawerState</span><span class="p">.</span><span class="k">open</span><span class="p">()</span> <i class="conum" data-value="2"></i><b>(2)</b>
+                <span class="p">}</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Deklaration des Scopes</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>öffnen des Drawers im coroutineScope</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_launchedeffect_vs_remembercoroutinescope"><a class="anchor" href="#_launchedeffect_vs_remembercoroutinescope"></a>9.3.1. LaunchedEffect vs rememberCoroutineScope</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://developer.android.com/jetpack/compose/side-effects#launchedeffect" target="_blank" rel="noopener">LaunchedEffect: run suspend functions in the scope of a composable</a></p>
+</li>
+<li>
+<p><a href="https://developer.android.com/jetpack/compose/side-effects#remembercoroutinescope" target="_blank" rel="noopener">rememberCoroutineScope: obtain a composition-aware scope to launch a coroutine outside a composable</a></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Using LaunchedEffect in this case wasn&#8217;t possible because we needed to trigger the call to create a coroutine in a regular callback that was outside of the Composition.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -1523,7 +1679,7 @@ By convention, the modifier is specified as the first optional parameter of a fu
 <div id="footer">
 <div id="footer-text">
 Version 0.0.1<br>
-Last updated 2022-06-07 15:01:59 UTC
+Last updated 2022-06-07 16:06:26 UTC
 </div>
 </div>
 </body>
