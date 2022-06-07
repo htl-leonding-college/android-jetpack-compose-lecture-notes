@@ -416,6 +416,79 @@ data class WellnessTask (
 
 == Advanced State and Side Effects in Jetpack Compose
 
+=== Consuming a Flow from the ViewModel
+
+* We want our UI in the `CraneHomeContent` composable to update whenever there's a new item emitted into the `suggestedDestinations` stream of data.
+
+* We can use the *`StateFlow.collectAsState()`* function. When used in a composable function, `collectAsState()` collects values from the `StateFlow` and represents the latest value via Compose's State API. This will make the Compose code that reads that state value recompose on new emissions.
+
+
+[source,kotlin]
+----
+import androidx.compose.runtime.collectAsState
+
+@Composable
+fun CraneHomeContent(
+    onExploreItemClicked: OnExploreItemClicked,
+    openDrawer: () -> Unit,
+    modifier: Modifier = Modifier,
+    viewModel: MainViewModel = viewModel(),
+) {
+    val suggestedDestinations by viewModel.suggestedDestinations.collectAsState() // <.>
+    // ...
+}
+----
+
+<.> Hier wird festgelegt, daß die Collection suggestedDestinations ein State ist, also observable ist, wodurch bei Änderung die UI automatisch aktualisiert wird
+
+
+* https://stackoverflow.com/questions/38250022/what-does-by-keyword-do-in-kotlin[What does 'by' keyword do in Kotlin?^]
+
+//--
+
+* Compose also offers APIs for Android's most popular stream-based solutions:
+** LiveData.observeAsState()
+** Observable.subscribeAsState()
+
+
+=== LaunchedEffect and rememberUpdatedState
+
+* In the project, there's a home/LandingScreen.kt file that's not used at the moment. We want to add a *landing screen* to the app, which potentially could be used to *load all the data needed in the background*.
+
+* The landing screen will occupy the whole screen and show the app's logo in the middle of the screen. Ideally, we'd show the screen and—after all the data's been loaded—we'd notify the caller that the landing screen can be dismissed using the onTimeout callback.
+
+* *Kotlin coroutines are the recommended way to perform asynchronous operations* in Android. An app would usually use coroutines to load things in the background when it starts. Jetpack Compose offers APIs that make using coroutines safe within the UI layer. As this app doesn't communicate with a backend, we'll use the coroutines' delay function to simulate loading things in the background.
+
+.side-effect in Compose
+****
+A side-effect in Compose is a change to the state of the app that happens outside the scope of a composable function. For example, opening a new screen when the user taps on a button, or showing a message when the app doesn't have Internet connection.
+****
+
+* Changing the state to show/hide the landing screen will happen in the *onTimeout callback* and since before calling onTimeout we need to load things using coroutines, the state change needs to happen in the context of a coroutine!
+
+.home/LandingScreen.kt file
+[source,kotlin]
+----
+import androidx.compose.runtime.LaunchedEffect
+import kotlinx.coroutines.delay
+
+@Composable
+fun LandingScreen(modifier: Modifier = Modifier, onTimeout: () -> Unit) {
+    Box(modifier = modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        // Start a side effect to load things in the background
+        // and call onTimeout() when finished.
+        // Passing onTimeout as a parameter to LaunchedEffect
+        // is wrong! Don't do this. We'll improve this code in a sec.
+        LaunchedEffect(onTimeout) {
+            delay(SplashWaitTime) // Simulates loading things
+            onTimeout()
+        }
+        Image(painterResource(id = R.drawable.ic_crane_drawer), contentDescription = null)
+    }
+}
+----
+
+
 
 
 
