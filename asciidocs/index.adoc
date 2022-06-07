@@ -623,3 +623,34 @@ IMPORTANT: Using LaunchedEffect in this case wasn't possible because we needed t
 * The side-effect API we're looking for is https://developer.android.com/jetpack/compose/side-effects#disposableeffect[DisposableEffect^].
 
 
+=== produceState
+
+* https://developer.android.com/codelabs/jetpack-compose-advanced-state-side-effects?continue=https%3A%2F%2Fdeveloper.android.com%2Fcourses%2Fpathways%2Fcompose%23codelab-https%3A%2F%2Fdeveloper.android.com%2Fcodelabs%2Fjetpack-compose-advanced-state-side-effects#7[Pathway: produceState]
+
+* Synchronisieren der cityDetails mit dem ViewModel
+
+* Anstelle eines StateFlows des Typs DetailsUiState wird hier eine neue API, die https://developer.android.com/jetpack/compose/side-effects#producestate[produceState-API^] verwendet.
+
+* produceState allows you to convert non-Compose state into Compose State. It launches a coroutine scoped to the Composition that can push values into the returned State using the value property. As with LaunchedEffect, produceState also takes keys to cancel and restart the computation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
